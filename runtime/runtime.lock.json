@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "rehearsal",
+  "tools": [
+    {
+      "tool": "yt-dlp",
+      "version": "unknown",
+      "source_url": "",
+      "sha256": "",
+      "origin_type": "external",
+      "macos_min_version": "pending",
+      "codesign_identity": "",
+      "notarized": false,
+      "smoke_status": "blocked",
+      "last_verified_at": null
+    },
+    {
+      "tool": "ffmpeg",
+      "version": "unknown",
+      "source_url": "",
+      "sha256": "",
+      "origin_type": "external",
+      "macos_min_version": "pending",
+      "codesign_identity": "",
+      "notarized": false,
+      "smoke_status": "blocked",
+      "last_verified_at": null
+    },
+    {
+      "tool": "ffprobe",
+      "version": "unknown",
+      "source_url": "",
+      "sha256": "",
+      "origin_type": "external",
+      "macos_min_version": "pending",
+      "codesign_identity": "",
+      "notarized": false,
+      "smoke_status": "blocked",
+      "last_verified_at": null
+    }
+  ],
+  "notes": [
+    "This rehearsal tree intentionally does not ship bundled runtime binaries.",
+    "A runtime may re-enter public distribution only after fixed version, sha256, signing, and smoke verification all pass."
+  ]
+}
+

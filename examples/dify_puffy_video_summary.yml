@@ -1,0 +1,15 @@
+version: "1.0"
+name: Puffy Video Summary
+steps:
+  - name: queue
+    type: http
+    method: POST
+    url: http://127.0.0.1:41480/api/extract
+    body:
+      url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+      async: true
+  - name: poll
+    type: http
+    method: GET
+    url: "{{ queue.jobId | prepend('http://127.0.0.1:41480/api/jobs/') }}"
+

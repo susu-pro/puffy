@@ -1,0 +1,9 @@
+target/
+.DS_Store
+._*
+*.log
+*.pyc
+__pycache__/
+.venv/
+.pytest_cache/
+Cargo.toml.orig

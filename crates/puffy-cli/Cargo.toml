@@ -1,0 +1,12 @@
+[package]
+name = "puffy-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "puffy"
+path = "src/main.rs"
+
+[dependencies]
+puffy-core = { path = "../puffy-core" }
+

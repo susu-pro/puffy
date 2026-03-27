@@ -1,0 +1,41 @@
+{
+  "name": "Puffy Async Extract",
+  "nodes": [
+    {
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [200, 300]
+    },
+    {
+      "name": "Queue Extract",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [420, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:41480/api/extract",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "{\"url\":\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\"async\":true}"
+      }
+    },
+    {
+      "name": "Poll Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [640, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'http://127.0.0.1:41480/api/jobs/' + $json.jobId }}",
+        "jsonParameters": true
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [[{"node": "Queue Extract", "type": "main", "index": 0}]]
+    },
+    "Queue Extract": {
+      "main": [[{"node": "Poll Job", "type": "main", "index": 0}]]
+    }
+  }
+}
+
