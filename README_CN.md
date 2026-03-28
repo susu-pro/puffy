@@ -1,6 +1,33 @@
-# Puffy 公共引擎
+<h1 align="center" id="readme-top">
+  Puffy 公共引擎
+</h1>
 
-贴一个公开视频链接，拿回一组干净的本地文件。
+<p align="center">
+  <b>贴一个公开视频链接，拿回一组干净的本地文件。</b><br>
+  开源 CLI + 本地 API + Python 客户端，给那些想要可脚本化引擎的人，<br>
+  不是给你继续手搓一串工具链用的。
+</p>
+
+<p align="center">
+  <a href="https://github.com/susu-pro/puffy/stargazers"><img src="https://img.shields.io/github/stars/susu-pro/puffy?style=for-the-badge&color=f0c674" alt="Stars" /></a>
+  <img src="https://img.shields.io/badge/CLI_%2B_API-local--first-black?style=for-the-badge" alt="CLI and API" />
+  <img src="https://img.shields.io/badge/Docker-self--hosted-blue?style=for-the-badge" alt="Docker" />
+  <a href="https://github.com/susu-pro/puffy/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" /></a>
+</p>
+
+<p align="center">
+  <img src="./public/demo-cli.gif" width="880" alt="Puffy CLI Demo" />
+</p>
+
+<p align="center">
+  <a href="#get-started"><strong>快速开始</strong></a> ·
+  <a href="#local-api"><strong>API</strong></a> ·
+  <a href="#python-client"><strong>Python</strong></a> ·
+  <a href="#runtime-policy"><strong>Runtime</strong></a> ·
+  <a href="./README.md">🇺🇸 English</a>
+</p>
+
+---
 
 这个仓就是 Puffy 的开源引擎。
 
@@ -45,6 +72,8 @@
 - crash reporting / telemetry
 - 私有发版链路
 - 还没通过公开门禁的 runtime 二进制
+
+<a id="get-started"></a>
 
 ## 60 秒开始
 
@@ -94,6 +123,8 @@ docker run --rm -p 41480:41480 puffy-engine
 - Instagram
 
 像 `x.com` 这样的 host alias 会自动归一。
+
+<a id="local-api"></a>
 
 ## 本地 API
 
@@ -154,6 +185,8 @@ curl "http://127.0.0.1:41480/api/assets?limit=10"
 curl "http://127.0.0.1:41480/api/search?q=knowledge+asset&limit=5"
 ```
 
+<a id="python-client"></a>
+
 ## Python 客户端
 
 小型 Python 客户端在 [`clients/python`](./clients/python)。
@@ -193,6 +226,8 @@ hits = client.search("knowledge asset", limit=5)
 - `chapters.json`
 
 下游工具真正该依赖的是这批干净文件，不是桌面壳细节。
+
+<a id="runtime-policy"></a>
 
 ## Runtime 规则
 

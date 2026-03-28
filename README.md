@@ -1,6 +1,33 @@
-# Puffy Public Engine
+<h1 align="center" id="readme-top">
+  Puffy Public Engine
+</h1>
 
-Paste a public media URL. Get clean local files back.
+<p align="center">
+  <b>Paste a public media URL. Get clean local files back.</b><br>
+  Open CLI + local API + Python client for people who want a scriptable engine,<br>
+  not another week of gluing tools together by hand.
+</p>
+
+<p align="center">
+  <a href="https://github.com/susu-pro/puffy/stargazers"><img src="https://img.shields.io/github/stars/susu-pro/puffy?style=for-the-badge&color=f0c674" alt="Stars" /></a>
+  <img src="https://img.shields.io/badge/CLI_%2B_API-local--first-black?style=for-the-badge" alt="CLI and API" />
+  <img src="https://img.shields.io/badge/Docker-self--hosted-blue?style=for-the-badge" alt="Docker" />
+  <a href="https://github.com/susu-pro/puffy/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" /></a>
+</p>
+
+<p align="center">
+  <img src="./public/demo-cli.gif" width="880" alt="Puffy CLI Demo" />
+</p>
+
+<p align="center">
+  <a href="#get-started"><strong>Get Started</strong></a> ·
+  <a href="#local-api"><strong>API</strong></a> ·
+  <a href="#python-client"><strong>Python</strong></a> ·
+  <a href="#runtime-policy"><strong>Runtime</strong></a> ·
+  <a href="./README_CN.md">🇨🇳 简体中文</a>
+</p>
+
+---
 
 This repository is the open engine behind Puffy.
 
@@ -43,6 +70,8 @@ It does not contain:
 - crash reporting or telemetry
 - private release plumbing
 - runtime binaries that have not passed public checks
+
+<a id="get-started"></a>
 
 ## Start In 60 Seconds
 
@@ -92,6 +121,8 @@ The current source normalization covers:
 - Instagram
 
 Host aliases such as `x.com` are normalized automatically.
+
+<a id="local-api"></a>
 
 ## Local API
 
@@ -152,6 +183,8 @@ curl "http://127.0.0.1:41480/api/assets?limit=10"
 curl "http://127.0.0.1:41480/api/search?q=knowledge+asset&limit=5"
 ```
 
+<a id="python-client"></a>
+
 ## Python Client
 
 The small Python client lives in [`clients/python`](./clients/python).
@@ -191,6 +224,8 @@ The target output shape includes:
 - `chapters.json`
 
 That is the part downstream tools should depend on: clean local files, not a desktop shell detail.
+
+<a id="runtime-policy"></a>
 
 ## Runtime Policy
 
