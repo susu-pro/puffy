@@ -22,6 +22,8 @@
 <p align="center">
   <a href="#get-started"><strong>快速开始</strong></a> ·
   <a href="#local-api"><strong>API</strong></a> ·
+  <a href="#examples"><strong>示例</strong></a> ·
+  <a href="#output"><strong>输出</strong></a> ·
   <a href="#python-client"><strong>Python</strong></a> ·
   <a href="#runtime-policy"><strong>Runtime</strong></a> ·
   <a href="./README.md">🇺🇸 English</a>
@@ -210,7 +212,22 @@ job = client.wait_for_job(accepted.job_id, poll_interval=1.0, timeout=30.0)
 hits = client.search("knowledge asset", limit=5)
 ```
 
-## 你最终会拿到什么
+<a id="examples"></a>
+
+## 示例
+
+起步示例在 [`examples/`](./examples)：
+
+- `langchain_video_rag.py`：起任务、等待完成，再把结果接进 LangChain 风格流程
+- `n8n_puffy_async_template.json`：给 n8n 用的最小异步轮询模板
+- `dify_puffy_video_summary.yml`：Dify 风格的最小 HTTP 工作流草图
+- `open_webui_local_research.md`：把 Puffy 当作本地研究入口使用
+
+快速索引见 [`examples/README.md`](./examples/README.md)。
+
+<a id="output"></a>
+
+## 输出
 
 默认情况下，Puffy 会在 `~/Documents/Puffy` 下规划一个本地资产目录。
 
@@ -241,6 +258,29 @@ hits = client.search("knowledge asset", limit=5)
 - [`runtime/runtime.lock.json`](./runtime/runtime.lock.json)
 - [`runtime/README.md`](./runtime/README.md)
 
+## 参与贡献
+
+如果你想改进公开引擎，先走最朴素的路径：
+
+```bash
+git clone https://github.com/susu-pro/puffy.git && cd puffy
+cargo test
+cargo run -p puffy-cli -- doctor
+cd clients/python && python -m unittest discover tests
+```
+
+改动范围尽量收在引擎、CLI、Python 客户端、示例和 runtime 规则里。
+
+## 反馈入口
+
+如果你正在真实工作流里试 Puffy，欢迎开 issue，最好带上：
+
+- 你喂了什么链接
+- 你用的是 CLI、本地 API，还是 Python 客户端
+- 你下一步本来期待拿到什么文件或结果
+
+这些反馈会直接决定下一轮的来源支持、DX 修复和工作流优化。
+
 ## 仓结构
 
 ```text
@@ -266,3 +306,13 @@ hits = client.search("knowledge asset", limit=5)
 ## 许可证
 
 MIT，见 [`LICENSE`](./LICENSE)。
+
+---
+
+<a href="https://star-history.com/#susu-pro/puffy&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=susu-pro/puffy&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=susu-pro/puffy&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=susu-pro/puffy&type=Date" width="600" />
+  </picture>
+</a>

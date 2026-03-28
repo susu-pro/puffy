@@ -22,6 +22,8 @@
 <p align="center">
   <a href="#get-started"><strong>Get Started</strong></a> ·
   <a href="#local-api"><strong>API</strong></a> ·
+  <a href="#examples"><strong>Examples</strong></a> ·
+  <a href="#output"><strong>Output</strong></a> ·
   <a href="#python-client"><strong>Python</strong></a> ·
   <a href="#runtime-policy"><strong>Runtime</strong></a> ·
   <a href="./README_CN.md">🇨🇳 简体中文</a>
@@ -208,7 +210,22 @@ job = client.wait_for_job(accepted.job_id, poll_interval=1.0, timeout=30.0)
 hits = client.search("knowledge asset", limit=5)
 ```
 
-## What You Get Back
+<a id="examples"></a>
+
+## Examples
+
+Starter integrations live in [`examples/`](./examples):
+
+- `langchain_video_rag.py`: kick off a job, wait for completion, then load the output into a LangChain-style flow
+- `n8n_puffy_async_template.json`: tiny async polling template for n8n
+- `dify_puffy_video_summary.yml`: minimal Dify-style HTTP workflow sketch
+- `open_webui_local_research.md`: use Puffy as a local ingest step for research workflows
+
+See [`examples/README.md`](./examples/README.md) for the quick map.
+
+<a id="output"></a>
+
+## Output
 
 By default, Puffy plans a local asset directory under `~/Documents/Puffy`.
 
@@ -239,6 +256,29 @@ Read the public runtime files here:
 - [`runtime/runtime.lock.json`](./runtime/runtime.lock.json)
 - [`runtime/README.md`](./runtime/README.md)
 
+## Contributing
+
+If you want to improve the public engine, start with the boring path:
+
+```bash
+git clone https://github.com/susu-pro/puffy.git && cd puffy
+cargo test
+cargo run -p puffy-cli -- doctor
+cd clients/python && python -m unittest discover tests
+```
+
+Keep changes focused on the engine, CLI, Python client, examples, and runtime policy.
+
+## Feedback
+
+If you are trying Puffy in a real workflow, open an issue and tell us:
+
+- what link you tried
+- whether you used the CLI, local API, or Python client
+- what file or result you expected to get next
+
+That feedback is what decides the next batch of source support, DX fixes, and workflow improvements.
+
 ## Repo Map
 
 ```text
@@ -264,3 +304,13 @@ Read the public runtime files here:
 ## License
 
 MIT. See [`LICENSE`](./LICENSE).
+
+---
+
+<a href="https://star-history.com/#susu-pro/puffy&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=susu-pro/puffy&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=susu-pro/puffy&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=susu-pro/puffy&type=Date" width="600" />
+  </picture>
+</a>
