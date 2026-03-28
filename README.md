@@ -21,6 +21,8 @@
 
 <p align="center">
   <a href="#get-started"><strong>Get Started</strong></a> ·
+  <a href="https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_aarch64.dmg"><strong>Download Mac</strong></a> ·
+  <a href="https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_x64-setup.exe"><strong>Download Windows</strong></a> ·
   <a href="#local-api"><strong>API</strong></a> ·
   <a href="#examples"><strong>Examples</strong></a> ·
   <a href="#output"><strong>Output</strong></a> ·
@@ -31,6 +33,14 @@
 
 ---
 
+## Direct Download
+
+| Platform | Size | Direct Link |
+| --- | --- | --- |
+| macOS (Apple Silicon) | ~30 MB | [Download DMG](https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_aarch64.dmg) |
+| macOS (Intel) | ~62 MB | [Download DMG](https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_x64.dmg) |
+| Windows | ~21 MB | [Download Installer](https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_x64-setup.exe) |
+
 This repository is the open engine behind Puffy.
 
 Use it if you want:
@@ -40,7 +50,7 @@ Use it if you want:
 - a small Python client for scripts and workflows
 - a Docker entrypoint you can self-host
 
-If you just want a desktop installer, go to [`susu-pro/puffy-download`](https://github.com/susu-pro/puffy-download/releases).
+If you just want a desktop installer, use the direct download links above.
 
 ## What This Repo Is Good For
 

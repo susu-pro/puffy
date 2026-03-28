@@ -21,6 +21,8 @@
 
 <p align="center">
   <a href="#get-started"><strong>快速开始</strong></a> ·
+  <a href="https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_aarch64.dmg"><strong>下载 Mac</strong></a> ·
+  <a href="https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_x64-setup.exe"><strong>下载 Windows</strong></a> ·
   <a href="#local-api"><strong>API</strong></a> ·
   <a href="#examples"><strong>示例</strong></a> ·
   <a href="#output"><strong>输出</strong></a> ·
@@ -30,6 +32,14 @@
 </p>
 
 ---
+
+## 直接下载
+
+| 平台 | 体积 | 直链 |
+| --- | --- | --- |
+| macOS (Apple Silicon) | ~30 MB | [下载 DMG](https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_aarch64.dmg) |
+| macOS (Intel) | ~62 MB | [下载 DMG](https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_x64.dmg) |
+| Windows | ~21 MB | [下载安装包](https://github.com/susu-pro/puffy-download/releases/download/v0.1.5/Puffy_0.1.5_x64-setup.exe) |
 
 这个仓就是 Puffy 的开源引擎。
 
@@ -42,7 +52,7 @@
 
 那你来对地方了。
 
-如果你只是想直接下载安装包，请去 [`susu-pro/puffy-download`](https://github.com/susu-pro/puffy-download/releases)。
+如果你只是想直接下载安装包，直接点上面的链接即可。
 
 ## 这个仓最适合干什么
 
