@@ -1,63 +1,54 @@
 # Puffy 公共引擎
 
-Puffy 把公开视频变成本地可复用资产。
+贴一个公开视频链接，拿回一组干净的本地文件。
 
-这个仓是 Puffy 面向技术用户的公开引擎线：
+这个仓就是 Puffy 的开源引擎。
+
+如果你想要的是：
 
 - 本地优先 CLI
-- localhost headless API
-- 面向工作流工具的 Python SDK
-- Docker 与自托管入口
-- 面向公开分发的 runtime 固定规则
+- localhost API
+- 给脚本和工作流用的小型 Python 客户端
+- 可自托管的 Docker 入口
 
-如果你只是想直接下载安装包，而不是自己跑源码或 CLI，请去 [`susu-pro/puffy-download`](https://github.com/susu-pro/puffy-download/releases)。
+那你来对地方了。
 
-这个仓的边界很明确：
+如果你只是想直接下载安装包，请去 [`susu-pro/puffy-download`](https://github.com/susu-pro/puffy-download/releases)。
 
-- 引擎保持公开
-- GUI 壳不放进这个仓
-- runtime 二进制在通过 lock、签名、smoke gate 之前，不回到公开分发
+## 这个仓最适合干什么
 
-## 这个仓为什么存在
+这个仓是给那些想把“媒体转本地文本资产”自动化掉的人准备的，不是给你继续手搓一串工具链用的。
 
-Puffy 不是一堆一次性下载脚本的拼装体。
+你可以拿它来：
 
-公开引擎线的目标是：
+- 给一个公开 URL，交给本地流程处理
+- 拿回一组 agent、RAG、笔记系统都能复用的文件
+- 把 Puffy 当成一个很小的 localhost 服务来跑
+- 在一个简单、可读的接口面上搭你自己的工作流
 
-- 给一个公开 URL，产出一组稳定的本地资产
-- 让 agent、RAG、笔记系统能直接复用这些文件
-- 提供一个可自托管的本地入口，替代手工拼 `yt-dlp`、`ffmpeg`、字幕和 transcript 清洗链
-- 让工作流开发者基于一个窄而清晰的合同面构建自己的系统
-
-这个仓主要服务：
+最适合的人：
 
 - CLI 用户
 - 本地 API 接入方
-- Python / n8n / Dify / Open WebUI 工作流搭建者
-- 关心引擎行为、runtime 政策、输出合同的贡献者
+- Python 工作流开发者
+- n8n / Dify / Open WebUI 折腾党
+- 关心引擎行为和 runtime 规则的贡献者
 
-## 这个仓包含什么
+## 哪些东西不在这个仓里
 
-### 公开能力面
+这个仓故意不是完整桌面产品。
 
-- `crates/puffy-core`：引擎规划、来源规范化、runtime 政策、结构化输出合同
-- `crates/puffy-cli`：`puffy` 二进制，提供 `doctor`、`serve`、`extract`、`runtime`
-- `clients/python`：小型 Python 客户端，方便本地自动化接入
-- `examples/`：面向 agent 和工作流工具的起步示例
-- `docker/`：自托管入口与文档
-- `runtime/`：runtime lock 与公开分发规则
-
-### 故意不放进来的东西
+这里不放：
 
 - 桌面 GUI 壳
 - updater
 - crash reporting / telemetry
 - 私有发版链路
-- 尚未通过公开门禁的内置 runtime 二进制
+- 还没通过公开门禁的 runtime 二进制
 
-## 快速开始
+## 60 秒开始
 
-### 本地运行
+### 本地跑起来
 
 ```bash
 cargo run -p puffy-cli -- doctor
@@ -65,7 +56,7 @@ cargo run -p puffy-cli -- serve
 curl http://127.0.0.1:41480/api/health
 ```
 
-### 用 CLI 规划一个提取任务
+### 规划一个提取任务
 
 ```bash
 cargo run -p puffy-cli -- extract "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -87,11 +78,11 @@ docker build -t puffy-engine .
 docker run --rm -p 41480:41480 puffy-engine
 ```
 
-容器入口默认就是 `puffy serve`。
+容器默认启动 `puffy serve`。
 
-## 当前支持的公开来源
+## 它现在能处理哪些来源
 
-目前公开来源规范化覆盖：
+目前来源规范化覆盖：
 
 - YouTube
 - TikTok
@@ -102,11 +93,11 @@ docker run --rm -p 41480:41480 puffy-engine
 - 快手
 - Instagram
 
-引擎内部会把 `x.com` 这类 host alias 归一到它预期的规范地址。
+像 `x.com` 这样的 host alias 会自动归一。
 
-## API 合同
+## 本地 API
 
-公共引擎目前暴露一组很小的 localhost API：
+API 很小，故意保持简单：
 
 - `GET /health`
 - `GET /api/health`
@@ -131,7 +122,7 @@ curl http://127.0.0.1:41480/api/health
 }
 ```
 
-### 提交一个提取任务
+### 提交一个任务
 
 ```bash
 curl -X POST http://127.0.0.1:41480/api/extract \
@@ -156,14 +147,14 @@ curl -X POST http://127.0.0.1:41480/api/extract \
 curl http://127.0.0.1:41480/api/jobs/asset-job-1743040100000-12345
 ```
 
-### 搜索或列资产
+### 搜索或列出资产
 
 ```bash
 curl "http://127.0.0.1:41480/api/assets?limit=10"
 curl "http://127.0.0.1:41480/api/search?q=knowledge+asset&limit=5"
 ```
 
-## Python SDK
+## Python 客户端
 
 小型 Python 客户端在 [`clients/python`](./clients/python)。
 
@@ -186,11 +177,11 @@ job = client.wait_for_job(accepted.job_id, poll_interval=1.0, timeout=30.0)
 hits = client.search("knowledge asset", limit=5)
 ```
 
-## 输出合同
+## 你最终会拿到什么
 
-每个任务默认会在 `~/Documents/Puffy` 下规划一个本地资产目录。
+默认情况下，Puffy 会在 `~/Documents/Puffy` 下规划一个本地资产目录。
 
-目标输出合同包括：
+目标输出长这样：
 
 - `video.mp4` 或 `audio.m4a`
 - `transcript.txt`
@@ -201,30 +192,19 @@ hits = client.search("knowledge asset", limit=5)
 - `chunks.jsonl`
 - `chapters.json`
 
-下游工具应该依赖的是这套输出合同，而不是桌面壳的实现细节。
+下游工具真正该依赖的是这批干净文件，不是桌面壳细节。
 
 ## Runtime 规则
 
-公共引擎对 runtime 的规则是故意收紧的。
+公开引擎对 runtime 很谨慎。
 
-当前这个公开引擎树不会直接分发内置 `yt-dlp`、`ffmpeg`、`ffprobe`。
-在 runtime 没有完成固定版本、哈希、签名、smoke 验证之前，它就保持外置。
+当前这个仓不会直接分发内置 `yt-dlp`、`ffmpeg`、`ffprobe`。
+只有当版本、来源、哈希、签名和 smoke 状态都锁定以后，它们才允许回到公开分发。
 
-公开 lock 在：
+公开 runtime 文件在这里：
 
 - [`runtime/runtime.lock.json`](./runtime/runtime.lock.json)
-
-公开规则说明在：
-
 - [`runtime/README.md`](./runtime/README.md)
-
-只有以下条件全部满足后，bundled runtime 才允许重新进入公开分发：
-
-- 固定版本
-- 记录来源 URL
-- 记录 sha256
-- 记录签名身份
-- 记录 smoke 验证结果
 
 ## 仓结构
 
@@ -240,25 +220,13 @@ hits = client.search("knowledge asset", limit=5)
 └── runtime/
 ```
 
-## 示例
+## 接下来去哪看
 
-起步示例在 [`examples/`](./examples)：
-
-- `langchain_video_rag.py`
-- `n8n_puffy_async_template.json`
-- `dify_puffy_video_summary.yml`
-- `open_webui_local_research.md`
-
-简要说明见 [`examples/README.md`](./examples/README.md)。
-
-## 分发模型
-
-公开引擎仓不是桌面版分发通道。
-
-- 源码、CLI、API、示例、runtime 政策放在这里
-- 公开安装包统一放在 [`susu-pro/puffy-download`](https://github.com/susu-pro/puffy-download/releases)
-
-这个分离是故意的。这样公开仓可以继续保持开源、可脚本化、可贡献，而不会把桌面壳特有的发版包袱重新拖回来。
+- 示例：[`examples/`](./examples)
+- 示例索引：[`examples/README.md`](./examples/README.md)
+- 自托管说明：[`docker/selfhosted.md`](./docker/selfhosted.md)
+- runtime 规则：[`runtime/README.md`](./runtime/README.md)
+- 公开安装包：[`susu-pro/puffy-download`](https://github.com/susu-pro/puffy-download/releases)
 
 ## 许可证
 
